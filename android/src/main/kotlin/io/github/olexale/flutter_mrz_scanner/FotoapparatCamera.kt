@@ -9,7 +9,6 @@ import io.flutter.plugin.common.MethodChannel
 import io.fotoapparat.Fotoapparat
 import io.fotoapparat.configuration.CameraConfiguration
 import io.fotoapparat.configuration.UpdateConfiguration
-import io.fotoapparat.parameter.Resolution
 import io.fotoapparat.preview.Frame
 import io.fotoapparat.selector.highestResolution
 import io.fotoapparat.selector.off
@@ -29,8 +28,12 @@ class FotoapparatCamera constructor(
 
     val cameraView = CameraView(context)
     val configuration = CameraConfiguration(frameProcessor = this::processFrame,
-            pictureResolution = highestResolution(),
-            previewResolution = highestResolution())
+            pictureResolution = {
+                last { it.width >= 1000 }
+            },
+            previewResolution = {
+                last { it.width >= 1000 }
+            })
     val fotoapparat = Fotoapparat(
             context = context,
             view = cameraView,
