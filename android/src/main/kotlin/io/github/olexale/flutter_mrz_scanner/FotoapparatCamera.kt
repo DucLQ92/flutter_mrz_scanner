@@ -28,12 +28,8 @@ class FotoapparatCamera constructor(
 
     val cameraView = CameraView(context)
     val configuration = CameraConfiguration(frameProcessor = this::processFrame,
-            pictureResolution = {
-                last { it.width >= 800 }
-            },
-            previewResolution = {
-                last { it.width >= 800 }
-            })
+            pictureResolution = highestResolution(),
+            previewResolution = highestResolution())
     val fotoapparat = Fotoapparat(
             context = context,
             view = cameraView,
