@@ -2,6 +2,7 @@ package io.github.olexale.flutter_mrz_scanner
 
 import android.content.Context
 import android.graphics.*
+import android.util.Log
 import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
 import com.googlecode.tesseract.android.TessBaseAPI
@@ -92,6 +93,7 @@ class FotoapparatCamera constructor(
         val bitmap = getImage(frame)
         val cropped = calculateCutoutRect(bitmap, true)
         val mrz = scanMRZ(cropped)
+        Log.e("///////////", mrz)
         val fixedMrz = extractMRZ(mrz)
         mainExecutor.execute {
             messenger.invokeMethod("onParsed", fixedMrz)
