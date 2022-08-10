@@ -11,6 +11,7 @@ import io.fotoapparat.configuration.CameraConfiguration
 import io.fotoapparat.configuration.UpdateConfiguration
 import io.fotoapparat.parameter.Resolution
 import io.fotoapparat.preview.Frame
+import io.fotoapparat.selector.highestResolution
 import io.fotoapparat.selector.off
 import io.fotoapparat.selector.torch
 import io.fotoapparat.view.CameraView
